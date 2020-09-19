@@ -1,0 +1,10 @@
+.AvatarUploader > div {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lightgray;
+}

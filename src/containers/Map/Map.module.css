@@ -1,0 +1,49 @@
+.Map {
+  width: 100%;
+  height: 100%;
+  background: #6bae20;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  --background-image: url('../../assets/map.png');
+}
+
+.MapWrapper {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: center;
+  flex-wrap: wrap;
+}
+
+.FloatingButton {
+  content: ' ';
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background-image: url('../../assets/gift.svg');
+  background-size: cover;
+}
+
+.FloatingButton:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  /* When the animation is finished, start again */
+  animation: shake 1s ease-in-out alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
