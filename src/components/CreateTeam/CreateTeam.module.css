@@ -1,14 +1,61 @@
 .CreateTeam {
   display: flex;
   width: 80%;
-  height: 500px;
+  margin: auto;
+  padding: 25px;
   justify-content: space-around;
   align-items: center;
   background: lightgray;
-  box-shadow: 0px 0px 5px 1px rgba(100, 100, 100, 0.2);
+  --box-shadow: 0px 0px 5px 1px rgba(100, 100, 100, 0.2);
+}
+
+.CreateTeam section {
+  height: 100%;
+  flex-basis: 50%;
+}
+
+.CreateTeam h1 {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .Form {
   display: flex;
+  text-align: center;
   flex-direction: column;
+  padding: 20px;
+  border: 3px solid black;
+  background: white;
+  box-shadow: 0px 0px 5px 1px rgba(100, 100, 100, 0.2);
+}
+
+.ant-upload-list-picture-card .ant-upload-list-item-error {
+  border-color: darkgray;
+}
+
+.Form > * {
+  margin: 5px 0;
+}
+
+.Holes {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.Holes p {
+  display: none;
+  text-align: left;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.Holes > span {
+  width: 50px;
+  margin: auto;
+}
+
+.Holes > div {
+  flex: 1;
 }
