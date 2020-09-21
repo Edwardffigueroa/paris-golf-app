@@ -1,11 +1,60 @@
 import React from 'react';
 
-	import classes from './TeamDetail.module.css'
+import { Carousel } from 'antd'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 
-	const TeamDetail = (props) => {
-	    return (
-	    	<div className={classes.TeamDetail}>TeamDetail</div>
-		)
-	 }
+import classes from './TeamDetail.module.css'
 
-	export default TeamDetail
+const TeamDetail = ({ name, avatar, pictures, back }) => {
+	const contentStyle = {
+		height: '160px',
+		color: '#fff',
+		lineHeight: '160px',
+		textAlign: 'center',
+		background: '#364d79',
+	};
+	return (
+		<div className={classes.TeamDetail}>
+			<div className={classes.Wrapper}>
+
+				<div className={classes.Header}>
+					<ArrowLeftOutlined
+						onClick={back}
+						style={{ fontSize: '25px' }}
+						size="large" />
+					<h1>{name}</h1>
+				</div>
+				<div className={classes.Avatar}>
+					<Carousel className={classes.Carousel} autoplay>
+						{
+							pictures.map(pic => (
+								<div>
+									<img src={pic} alt={name} style={{ width: '100%' }} />
+								</div>
+							))
+						}
+					</Carousel>
+					<img src={avatar} alt={name} style={{ width: '100%' }} />
+				</div>
+				<div className={classes.CarouselWrapper}>
+					<Carousel className={classes.Carousel} autoplay>
+						<div>
+							<h3 style={contentStyle}>1</h3>
+						</div>
+						<div>
+							<h3 style={contentStyle}>2</h3>
+						</div>
+						<div>
+							<h3 style={contentStyle}>3</h3>
+						</div>
+						<div>
+							<h3 style={contentStyle}>4</h3>
+						</div>
+					</Carousel>
+				</div>
+			</div>
+		</div>
+	)
+}
+
+export default TeamDetail

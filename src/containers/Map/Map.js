@@ -3,7 +3,7 @@ import { Database } from '../../firebaseConfig'
 import { useHistory, Route } from 'react-router-dom'
 
 import Hole from '../../components/Hole/Hole'
-import Team from '../../components/Team/Team'
+import TeamDetail from '../TeamDetail/TeamDetail'
 
 import Contest from '../Contest/Contest';
 import classes from './Map.module.css'
@@ -13,15 +13,21 @@ const Map = ({ match }) => {
 	const history = useHistory()
 	const [holes, setHoles] = useState([])
 	const [teams, setTeams] = useState([])
+	const [teamSelected, setTeamSelected] = useState(null)
 
 	const goToContestHandler = e => history.push('/contest')
+	const teamHanlder = team => {
+		const found = teams.find(t => t.name === team)
+		setTeamSelected(found)
+		history.push(`/team/${team}`)
+	}
+
+	const backDetailHandler = e => history.push('/')
 
 	useEffect(() => {
 		fetch('https://paris-golf.firebaseio.com/holes.json')
 			.then(res => res.json())
-			.then(data =>
-				setHoles(data)
-			)
+			.then(data => setHoles(data))
 
 		Database.ref('teams')
 			.on('value',
@@ -41,6 +47,7 @@ const Map = ({ match }) => {
 					holes.map(hole => {
 						const _myteams = teams.filter(t => t.currentHole.value === hole)
 						return <Hole
+							clicked={teamHanlder}
 							teams={_myteams}
 							number={hole} />
 					})
@@ -55,6 +62,17 @@ const Map = ({ match }) => {
 					<Contest
 						teams={teams}
 						holes={holes} />
+				)} />
+			<Route
+				path='/team/:id'
+				render={() => (
+					teamSelected ?
+						<TeamDetail
+							back={backDetailHandler}
+							name={teamSelected.name}
+							avatar={teamSelected.avatar}
+							pictures={teamSelected.pictures} />
+						: null
 				)} />
 		</div>
 	)

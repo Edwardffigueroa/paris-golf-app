@@ -15,7 +15,6 @@ function App() {
           <p>Base App</p>
         </header> */}
         <Switch>
-          <Route path="/team" component={TeamDetail} />
           <Route path="/admin" component={Admin} />
           <Route path="/" component={Map} />
         </Switch>
