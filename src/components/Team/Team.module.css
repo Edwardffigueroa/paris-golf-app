@@ -1,1 +1,13 @@
-.Team{ display: flex; }
+.Team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Avatar {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}

@@ -77,13 +77,13 @@ const CreateTeam = (props) => {
 	return (
 		<div className={classes.CreateTeam}>
 			<section className={classes.Form}>
-				<h1>Create Team</h1>
+				<h1>Créer equipe</h1>
 				<Input
 					size="large"
 					value={name}
 					prefix={<UsergroupDeleteOutlined />}
 					onChange={nameHandler}
-					placeholder="Team name" />
+					placeholder="Équipe nom" />
 				<div className={classes.Holes}>
 					<p>Hole number</p>
 					<FlagOutlined />
@@ -103,9 +103,10 @@ const CreateTeam = (props) => {
 					sendImages={saveImagesToFirebase} />
 				<Button
 					onClick={createTeamHandler}
+					color="#6BAE20"
 					type="primary"
 					size="large">
-					Primary
+					Enregistre
         		</Button>
 			</section>
 			<section className={classes.List}>
