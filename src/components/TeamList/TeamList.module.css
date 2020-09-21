@@ -1,1 +1,56 @@
-.TeamList{ display: flex; }
+.TeamList {
+  display: flex;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.TeamList > div {
+  width: 100%;
+}
+
+.Card > div {
+  padding: 0;
+}
+
+.Card > div:first-of-type {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 20px;
+}
+
+.Avatar {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.HoleDescription {
+  display: flex;
+}
+
+.HoleDescription p {
+  margin: 0;
+  font-weight: 800;
+}
+
+.HoleDescription p:first-of-type span {
+  margin-right: 5px;
+}
+
+.HoleDescription p:last-of-type {
+  margin-left: 20px;
+}
+
+.ImgList {
+  margin-top: 10px;
+}
+
+.ImgMini {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+}

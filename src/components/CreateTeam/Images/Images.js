@@ -13,15 +13,17 @@ const Images = (props) => {
 	const [loading, setLoading] = useState(false)
 	const [fileList, setFileList] = useState([])
 
-	// useEffect(() => {
-	// 	setFileList([])
-	// 	setLoading(false)
-	// 	setPreviewImage('')
-	// 	setPreviewTitle('')
-	// }, [props.saved])
+	useEffect(() => {
+		setFileList([])
+		setLoading(false)
+		setPreviewImage('')
+		setPreviewTitle('')
+	}, [props.saved])
 
 	const handleChange = ({ fileList }) => {
-		props.sendImages(fileList[0].originFileObj)
+		if (fileList[0]) {
+			props.sendImages(fileList[0].originFileObj)
+		}
 		setFileList(fileList)
 	}
 	const handleCancel = () => setPreviewVisible(false)

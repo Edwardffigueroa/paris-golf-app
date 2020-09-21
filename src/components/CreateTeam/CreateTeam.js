@@ -11,6 +11,7 @@ import { UsergroupDeleteOutlined, FlagOutlined } from '@ant-design/icons';
 import Images from './Images/Images'
 import Select from 'react-select'
 import Avatar from './Avatar/Avatar'
+import TeamList from '../TeamList/TeamList';
 
 const CreateTeam = (props) => {
 
@@ -21,22 +22,30 @@ const CreateTeam = (props) => {
 	const [avatarUrl, setAvatarUrl] = useState('')
 	const [images, setImages] = useState([])
 	const [saved, setSaved] = useState(false)
+	const [teamList, setTeamList] = useState([])
 
 	const nameHandler = e => setName(e.target.value)
 	const createTeamHandler = e => {
 		const _team = {
 			name: name,
-			currenHole: hole,
+			currentHole: hole,
 			avatar: avatarUrl,
-			images: images
+			images: images,
+			isWinner: false
 		}
 
 		Database.ref('teams/')
 			.push(_team)
 			.then(snapshot => {
-				console.log('success')
+
 				const _teamAdded = snapshot.toJSON()
 				setSaved(true)
+
+				setName('')
+				setImages([])
+				setAvatarUrl('')
+				setHole(props.holes[0])
+
 			}).catch(err => console.log(err))
 	}
 
@@ -54,7 +63,16 @@ const CreateTeam = (props) => {
 		setImages(prev => [...prev, _url])
 	}
 
-	useEffect(() => { }, [saved])
+	useEffect(() => {
+		Database.ref('teams')
+			.on('value',
+				snapshot => {
+					if (snapshot.val()) {
+						const _teams = Object.values(snapshot.val()).map(_team => _team)
+						setTeamList(_teams)
+					}
+				})
+	}, [])
 
 	return (
 		<div className={classes.CreateTeam}>
@@ -62,6 +80,7 @@ const CreateTeam = (props) => {
 				<h1>Create Team</h1>
 				<Input
 					size="large"
+					value={name}
 					prefix={<UsergroupDeleteOutlined />}
 					onChange={nameHandler}
 					placeholder="Team name" />
@@ -69,6 +88,7 @@ const CreateTeam = (props) => {
 					<p>Hole number</p>
 					<FlagOutlined />
 					<Select
+						value={hole}
 						className={classes.Selected}
 						classNamePrefix={classes.SelectedInners}
 						onChange={setHole}
@@ -76,8 +96,10 @@ const CreateTeam = (props) => {
 						options={props.holes} />
 				</div>
 				<Avatar
+					saved={saved}
 					sendAvatar={saveAvatarToFirebase} />
 				<Images
+					saved={saved}
 					sendImages={saveImagesToFirebase} />
 				<Button
 					onClick={createTeamHandler}
@@ -87,7 +109,8 @@ const CreateTeam = (props) => {
         		</Button>
 			</section>
 			<section className={classes.List}>
-
+				<TeamList
+					teams={teamList} />
 			</section>
 		</div>
 	)

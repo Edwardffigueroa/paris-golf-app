@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Upload } from 'antd'
 import { getBase64, beforeUpload } from '../../../utils/Utils'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -18,6 +18,11 @@ const Avatar = (props) => {
 			})
 		}
 	}
+
+	useEffect(() => {
+		setLoading(false)
+		setAvatar(null)
+	}, [props.saved])
 
 	return (
 		<Upload
