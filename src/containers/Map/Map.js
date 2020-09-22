@@ -19,7 +19,6 @@ const Map = ({ match }) => {
 	const teamHanlder = team => {
 		const found = teams.find(t => t.name === team)
 		setTeamSelected(found)
-		console.log(found)
 		history.push(`/team/${team}`)
 	}
 

@@ -58,12 +58,22 @@ const CreateTeam = (props) => {
 
 
 	const saveImageToFirebase = async image => {
-
-		let snapshot = await storageRef.child(`images_${name}_team_${image.uid}`).put(image)
-		console.log(snapshot)
-		let _url = await snapshot.ref.getDownloadURL()
-		console.log(image)
+		const snapshot = await storageRef.child(`images_${name}_team_${image.uid}`).put(image)
+		const _url = await snapshot.ref.getDownloadURL()
 		setImages(prev => [...prev, _url])
+	}
+
+	const saveWinnerToFirebase = team => {
+		const { uid } = team
+		delete team.uid
+
+		Database.ref('teams/' + uid)
+			.set({ ...team, isWinner: !team.isWinner })
+	}
+
+	const removeTeamFromFirabse = team => {
+		const { uid } = team
+		Database.ref('teams/' + uid).remove()
 	}
 
 	useEffect(() => {
@@ -71,7 +81,8 @@ const CreateTeam = (props) => {
 			.on('value',
 				snapshot => {
 					if (snapshot.val()) {
-						const _teams = Object.values(snapshot.val()).map(_team => _team)
+						const _teams = Object.keys(snapshot.val())
+							.map(_team => ({ ...snapshot.val()[_team], uid: _team }))
 						setTeamList(_teams)
 					}
 				})
@@ -114,6 +125,8 @@ const CreateTeam = (props) => {
 			</section>
 			<section className={classes.List}>
 				<TeamList
+					winner={saveWinnerToFirebase}
+					deleted={removeTeamFromFirabse}
 					teams={teamList} />
 			</section>
 		</div>

@@ -16,7 +16,7 @@
 .Card > div:first-of-type {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 15px;
   height: 100%;
   display: flex;
   align-items: center;

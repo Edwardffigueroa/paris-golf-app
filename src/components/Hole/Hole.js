@@ -13,6 +13,7 @@ const Hole = (props) => {
 					<Team
 						name={team.name}
 						avatar={team.avatar}
+						winner={team.isWinner}
 						clicked={props.clicked} />
 				))
 			}
