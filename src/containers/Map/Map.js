@@ -19,6 +19,7 @@ const Map = ({ match }) => {
 	const teamHanlder = team => {
 		const found = teams.find(t => t.name === team)
 		setTeamSelected(found)
+		console.log(found)
 		history.push(`/team/${team}`)
 	}
 
@@ -71,7 +72,7 @@ const Map = ({ match }) => {
 							back={backDetailHandler}
 							name={teamSelected.name}
 							avatar={teamSelected.avatar}
-							pictures={teamSelected.pictures} />
+							pictures={teamSelected.images} />
 						: null
 				)} />
 		</div>

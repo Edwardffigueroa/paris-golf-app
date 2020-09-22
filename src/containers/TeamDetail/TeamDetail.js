@@ -13,6 +13,12 @@ const TeamDetail = ({ name, avatar, pictures, back }) => {
 		textAlign: 'center',
 		background: '#364d79',
 	};
+	const items = pictures.map(pic => (
+		<div style={{ width: '100%', height: '100%' }}>
+			<img src={pic} alt={name} style={contentStyle} />
+		</div>
+	))
+
 	return (
 		<div className={classes.TeamDetail}>
 			<div className={classes.Wrapper}>
@@ -27,14 +33,9 @@ const TeamDetail = ({ name, avatar, pictures, back }) => {
 				<div className={classes.Avatar}>
 					<Carousel className={classes.Carousel} autoplay>
 						{
-							pictures.map(pic => (
-								<div>
-									<img src={pic} alt={name} style={{ width: '100%' }} />
-								</div>
-							))
+							items
 						}
 					</Carousel>
-					<img src={avatar} alt={name} style={{ width: '100%' }} />
 				</div>
 				<div className={classes.CarouselWrapper}>
 					<Carousel className={classes.Carousel} autoplay>

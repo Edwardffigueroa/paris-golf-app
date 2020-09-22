@@ -20,10 +20,10 @@ const Images = (props) => {
 		setPreviewTitle('')
 	}, [props.saved])
 
-	const handleChange = ({ fileList }) => {
-		if (fileList[0]) {
-			props.sendImages(fileList[0].originFileObj)
-		}
+	const handleChange = ({ file, fileList }) => {
+
+		// console.log(file)
+		props.sendImage(file)
 		setFileList(fileList)
 	}
 	const handleCancel = () => setPreviewVisible(false)

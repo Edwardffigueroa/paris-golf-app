@@ -34,7 +34,7 @@ const CreateTeam = (props) => {
 			isWinner: false
 		}
 
-		Database.ref('teams/')
+		Database.ref('teams')
 			.push(_team)
 			.then(snapshot => {
 
@@ -57,9 +57,12 @@ const CreateTeam = (props) => {
 	}
 
 
-	const saveImagesToFirebase = async imageListFile => {
-		const snapshot = await storageRef.child(`images_${name}_team_${imageListFile.uid}`).put(imageListFile)
-		const _url = await snapshot.ref.getDownloadURL()
+	const saveImageToFirebase = async image => {
+
+		let snapshot = await storageRef.child(`images_${name}_team_${image.uid}`).put(image)
+		console.log(snapshot)
+		let _url = await snapshot.ref.getDownloadURL()
+		console.log(image)
 		setImages(prev => [...prev, _url])
 	}
 
@@ -100,7 +103,7 @@ const CreateTeam = (props) => {
 					sendAvatar={saveAvatarToFirebase} />
 				<Images
 					saved={saved}
-					sendImages={saveImagesToFirebase} />
+					sendImage={saveImageToFirebase} />
 				<Button
 					onClick={createTeamHandler}
 					color="#6BAE20"
