@@ -9,13 +9,40 @@
   height: 100%;
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(3px);
+  animation: slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .ContestWrapper {
+  position: relative;
   width: 60%;
   height: 50%;
-  animation: slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Slot {
+  border: 5px solid black;
+  width: 300px;
+  height: 2em;
+  font-size: 5em;
+}
+
+.Header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.Header h1 {
+  flex: 1;
+  text-align: center;
+  color: black;
 }
 
 @-webkit-keyframes slide-in-fwd-center {

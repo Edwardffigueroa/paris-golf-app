@@ -21,11 +21,10 @@ const Images = (props) => {
 	}, [props.saved])
 
 	const handleChange = ({ file, fileList }) => {
-
-		// console.log(file)
 		props.sendImage(file)
 		setFileList(fileList)
 	}
+	
 	const handleCancel = () => setPreviewVisible(false)
 
 	const handlePreview = file => {

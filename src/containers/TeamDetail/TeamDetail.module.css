@@ -6,22 +6,30 @@
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: rgba(100, 100, 100, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
+  animation: slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .Wrapper {
-  padding: 20px;
+  position: relative;
+  padding: 50px 20px 20px 20px;
   margin: 0 auto;
   height: 720px;
   width: 80%;
   overflow: hidden;
   background-color: white;
+  display: flex;
 }
 
 .Header {
   width: 100%;
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 20px;
 }
 
 .Header h1 {
@@ -41,5 +49,35 @@
 .CarouselWrapper,
 .Avatar {
   width: 50%;
-  display: inline-block;
+}
+
+.Avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@-webkit-keyframes slide-in-fwd-center {
+  0% {
+    -webkit-transform: translateZ(-1400px);
+    transform: translateZ(-1400px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-fwd-center {
+  0% {
+    -webkit-transform: translateZ(-1400px);
+    transform: translateZ(-1400px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
 }

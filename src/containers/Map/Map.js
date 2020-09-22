@@ -23,7 +23,7 @@ const Map = ({ match }) => {
 		history.push(`/team/${team}`)
 	}
 
-	const backDetailHandler = e => history.push('/')
+	const backToMap = e => history.push('/')
 
 	useEffect(() => {
 		fetch('https://paris-golf.firebaseio.com/holes.json')
@@ -61,6 +61,7 @@ const Map = ({ match }) => {
 				path='/contest'
 				render={() => (
 					<Contest
+						back={backToMap}
 						teams={teams}
 						holes={holes} />
 				)} />
@@ -69,7 +70,7 @@ const Map = ({ match }) => {
 				render={() => (
 					teamSelected ?
 						<TeamDetail
-							back={backDetailHandler}
+							back={backToMap}
 							name={teamSelected.name}
 							avatar={teamSelected.avatar}
 							pictures={teamSelected.images} />
