@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Database, Storage } from '../../firebaseConfig'
 import 'antd/dist/antd.css';
+import { message } from 'antd'
+
 
 import classes from './CreateTeam.module.css'
 
@@ -25,7 +27,7 @@ const CreateTeam = (props) => {
 	const [teamList, setTeamList] = useState([])
 
 	const nameHandler = e => setName(e.target.value)
-	const createTeamHandler = e => {
+	const createTeamHandler = _ => {
 		const _team = {
 			name: name,
 			currentHole: hole,
@@ -34,33 +36,60 @@ const CreateTeam = (props) => {
 			isWinner: false
 		}
 
-		Database.ref('teams')
-			.push(_team)
-			.then(snapshot => {
+		if (!_team.avatar.length > 0 || !_team.images.length > 0) {
+			message.error({
+				content: 'Team not saved, images still uploading',
+				className: classes.Error,
+				style: {
+					marginTop: '50vh',
+				},
+			})
+		} else {
+			Database.ref('teams')
+				.push(_team)
+				.then(snapshot => {
 
-				const _teamAdded = snapshot.toJSON()
-				setSaved(true)
+					const _teamAdded = snapshot.toJSON()
+					setSaved(true)
 
-				setName('')
-				setImages([])
-				setAvatarUrl('')
-				setHole(props.holes[0])
+					setName('')
+					setImages([])
+					setAvatarUrl('')
+					setHole(props.holes[0])
 
-			}).catch(err => console.log(err))
+				}).catch(err => console.log(err))
+		}
 	}
 
 	const saveAvatarToFirebase = async imageFile => {
 		const snapshot = await storageRef.child(`avatar_${name}_team`).put(imageFile)
 		const _url = await snapshot.ref.getDownloadURL()
+		message.success({
+			content: 'Avatar uploaded!',
+			className: classes.Success,
+			style: {
+				marginTop: '50vh',
+			}
+		})
 		setAvatarUrl(_url)
 		return false || _url
 	}
 
 
-	const saveImageToFirebase = async image => {
+	const saveImageToFirebase = async (image, fileList) => {
 		const snapshot = await storageRef.child(`images_${name}_team_${image.uid}`).put(image)
 		const _url = await snapshot.ref.getDownloadURL()
 		setImages(prev => [...prev, _url])
+
+		if (image.uid === fileList[fileList.length - 1].uid) {
+			message.success({
+				content: 'Images uploaded!',
+				className: classes.Success,
+				style: {
+					marginTop: '50vh',
+				}
+			})
+		}
 	}
 
 	const saveWinnerToFirebase = team => {

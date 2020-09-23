@@ -14,10 +14,13 @@ const Avatar = (props) => {
 		if (info.file.originFileObj) {
 			getBase64(info.file.originFileObj, imgUrl => {
 				setAvatar(imgUrl)
+				props.sendAvatar(info.file.originFileObj)
 				setLoading(false)
 			})
 		}
 	}
+
+
 
 	useEffect(() => {
 		setLoading(false)
@@ -30,7 +33,6 @@ const Avatar = (props) => {
 			listType="picture-card"
 			className={classes.AvatarUploader}
 			showUploadList={false}
-			action={props.sendAvatar}
 			beforeUpload={beforeUpload}
 			onChange={handleChange}>
 			{
