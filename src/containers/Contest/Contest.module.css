@@ -22,13 +22,6 @@
   align-items: center;
 }
 
-.Slot {
-  border: 5px solid black;
-  width: 300px;
-  height: 2em;
-  font-size: 5em;
-}
-
 .Header {
   position: absolute;
   top: 0;
@@ -45,18 +38,29 @@
   color: black;
 }
 
-@-webkit-keyframes slide-in-fwd-center {
-  0% {
-    -webkit-transform: translateZ(-1400px);
-    transform: translateZ(-1400px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    opacity: 1;
-  }
+.Controls {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
+
+.Machine {
+  display: flex;
+}
+
+.Slot {
+  border: 5px solid black;
+  width: 2em;
+  height: 2em;
+  font-size: 5em;
+}
+
+.Animated {
+  background-color: white;
+  animation: beat 0.5s infinite alternate;
+}
+
 @keyframes slide-in-fwd-center {
   0% {
     -webkit-transform: translateZ(-1400px);
@@ -68,4 +72,9 @@
     transform: translateZ(0);
     opacity: 1;
   }
+}
+
+
+@keyframes beat { 
+  to { background-color: darkred;}
 }
