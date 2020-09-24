@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 
 import { ArrowLeftOutlined, PlayCircleOutlined, ReloadOutlined } from '@ant-design/icons'
 import classes from './Contest.module.css'
+import Footer from '../../components/Footer/Footer'
+import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
+
+import Up from '../../assets/Up.svg'
 
 import Slot from 'react-slot-machine'
 
@@ -36,16 +40,9 @@ const Contest = ({ teams, holes, back }) => {
 		<div className={classes.Contest}>
 			<div className={classes.ContestWrapper}>
 				<div className={classes.Header}>
-					<ArrowLeftOutlined
-						onClick={back}
-						style={{ fontSize: '25px' }}
-						size="large" />
-					<h1> Ruffle</h1>
+					<img style={{ width: '90%' }} src={tournoi} alt="" />
 				</div>
-				<div className={classes.Controls}>
-					<PlayCircleOutlined style={{ fontSize: '2rem' }} onClick={startHandler} />
-					<ReloadOutlined style={{ fontSize: '2rem' }} onClick={clearHandler} />
-				</div>
+
 				<div className={!turn ? classes.Machine : [classes.Machine, classes.Animated].join(' ')}>
 					{
 						target.map((t, i) => (
@@ -57,7 +54,7 @@ const Contest = ({ teams, holes, back }) => {
 								className={classes.Slot}>
 								{
 									holes.map(hole =>
-										<div key={hole} style={{ width: '100%', height: '100%' }}>
+										<div key={hole} style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 											{hole}
 										</div>
 									)
@@ -66,6 +63,25 @@ const Contest = ({ teams, holes, back }) => {
 						))
 					}
 				</div>
+				<div className={classes.Controls}>
+					<div className={classes.FirstButtons}>
+						<div className={classes.Start} onClick={startHandler} >
+							<ReloadOutlined />
+							<span className={classes.Dot}></span>
+						</div>
+					</div>
+					<div className={classes.LastButtons}>
+						<div className={classes.Start} onClick={startHandler} >
+							<ReloadOutlined />
+							<span className={classes.Dot}></span>
+						</div>
+						<div className={classes.Start} onClick={startHandler} >
+							<ReloadOutlined />
+							<span className={classes.Dot}></span>
+						</div>
+					</div>
+				</div>
+				<Footer transparent />
 			</div>
 		</div >
 	)

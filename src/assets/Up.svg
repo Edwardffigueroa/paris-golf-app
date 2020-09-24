@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="214" height="214" viewBox="0 0 214 214">
+  <defs>
+    <filter id="Shadow" x="30" y="30" width="184" height="184" filterUnits="userSpaceOnUse">
+      <feOffset dx="15" dy="15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12.5" result="blur"/>
+      <feFlood flood-color="#d3d2d2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Light" x="0" y="0" width="184" height="184" filterUnits="userSpaceOnUse">
+      <feOffset dx="-15" dy="-15" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="12.5" result="blur-2"/>
+      <feFlood flood-color="#fff"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Up" transform="translate(52.5 52.5)">
+    <g transform="matrix(1, 0, 0, 1, -52.5, -52.5)" filter="url(#Shadow)">
+      <rect id="Shadow-2" data-name="Shadow" width="109" height="109" rx="54.5" transform="translate(52.5 52.5)" fill="#ecf0f3"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -52.5, -52.5)" filter="url(#Light)">
+      <rect id="Light-2" data-name="Light" width="109" height="109" rx="54.5" transform="translate(52.5 52.5)" fill="#ecf0f3"/>
+    </g>
+    <rect id="Base" width="109" height="109" rx="54.5" fill="#f7f7f5"/>
+  </g>
+</svg>

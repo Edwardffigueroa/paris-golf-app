@@ -2,8 +2,9 @@ import React from 'react';
 
 import { Carousel } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
-
+import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
 import classes from './TeamDetail.module.css'
+import Footer from '../../components/Footer/Footer';
 
 const TeamDetail = ({ name, avatar, pictures, back }) => {
 
@@ -11,14 +12,7 @@ const TeamDetail = ({ name, avatar, pictures, back }) => {
 		<div className={classes.TeamDetail}>
 			<div className={classes.Wrapper}>
 				<div className={classes.Header}>
-					<ArrowLeftOutlined
-						onClick={back}
-						style={{ fontSize: '25px' }}
-						size="large" />
-					<h1>{name}</h1>
-				</div>
-				<div className={classes.Avatar}>
-					<img src={avatar} alt={name} style={{ width: '50%', borderRadius: '50%', margin: 'auto' }} />
+					<img style={{ width: '90%' }} src={tournoi} alt="" />
 				</div>
 				<div className={classes.CarouselWrapper}>
 					<Carousel className={classes.Carousel} autoplay>
@@ -30,6 +24,7 @@ const TeamDetail = ({ name, avatar, pictures, back }) => {
 							))
 						}
 					</Carousel>
+					<Footer />
 				</div>
 			</div>
 		</div>
