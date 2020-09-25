@@ -51,10 +51,50 @@
   width: 100%;
 }
 
+.Item {
+  width: 100vh;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
 .Avatar {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.WinnerMessage {
+  position: absolute;
+  top: 736px;
+  left: 185px;
+  font-size: 181px;
+  z-index: 2;
+  font-family: 'Helvetica neue', 'helvetica', sans-serif;
+  line-height: 254px;
+}
+
+.WinnerMessage h2 {
+  color: white;
+  font-weight: 700;
+}
+
+.RowButton {
+  position: absolute;
+  top: 560px;
+  left: 215px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 99;
+}
+
+.RowButton p {
+  font-size: 48px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  margin: 0 15px;
+  color: white;
 }
 
 @-webkit-keyframes slide-in-fwd-center {

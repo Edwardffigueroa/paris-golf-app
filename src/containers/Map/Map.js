@@ -105,9 +105,9 @@ const Map = ({ match }) => {
 		const setList = () => setInView(prev => !prev)
 		setInterval(() => setList(), 12000)
 
-		window.addEventListener('click', ({ clientX, clientY }) => {
-			console.log(clientX, clientY)
-		})
+		// window.addEventListener('click', ({ clientX, clientY }) => {
+		// 	console.log(clientX, clientY)
+		// })
 
 		return () => clearInterval(setList)
 	}, [])
@@ -151,7 +151,8 @@ const Map = ({ match }) => {
 							back={backToMap}
 							name={teamSelected.name}
 							avatar={teamSelected.avatar}
-							pictures={teamSelected.images} />
+							pictures={teamSelected.images}
+							isWinner={teamSelected.isWinner} />
 						: null
 				)} />
 		</div>
