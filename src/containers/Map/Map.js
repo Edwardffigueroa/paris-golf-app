@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Database } from '../../firebaseConfig'
 import { useHistory, Route } from 'react-router-dom'
+
+
+import { Database } from '../../firebaseConfig'
+
 import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
 import map from '../../assets/map.svg'
+import row from '../../assets/row.svg'
 
-import { useSprings, animated as a } from 'react-spring'
 import Hole from '../../components/Hole/Hole'
-import TeamDetail from '../TeamDetail/TeamDetail'
-
-import Contest from '../Contest/Contest';
-import classes from './Map.module.css'
 import Footer from '../../components/Footer/Footer'
 import Pointer from '../../components/Pointer/Pointer'
+
+import TeamDetail from '../TeamDetail/TeamDetail'
+import Contest from '../Contest/Contest';
+
+import { useSprings, animated as a } from 'react-spring'
+import classes from './Map.module.css'
 
 
 const Table = ({ group }) => {
@@ -44,7 +49,7 @@ const Map = ({ match }) => {
 	const [holeSelected, setHoleSelected] = useState(null)
 	const [inView, setInView] = useState(true)
 
-	// const goToContestHandler = e => history.push('/contest')
+	const goToContestHandler = e => history.push('/contest')
 	const teamHanlder = team => {
 		const found = teams.find(t => t.name === team)
 		setTeamSelected(found)
@@ -52,9 +57,11 @@ const Map = ({ match }) => {
 	}
 
 	const holeHandler = hole => {
-		setHoleSelected(hole)
+		const _isSame = hole === holeSelected
+		_isSame
+			? setHoleSelected(null)
+			: setHoleSelected(hole)
 	}
-
 	const backToMap = e => history.push('/')
 
 	useEffect(() => {
@@ -96,7 +103,12 @@ const Map = ({ match }) => {
 
 	useEffect(() => {
 		const setList = () => setInView(prev => !prev)
-		setInterval(() => setList(), 5000)
+		setInterval(() => setList(), 12000)
+
+		window.addEventListener('click', ({ clientX, clientY }) => {
+			console.log(clientX, clientY)
+		})
+
 		return () => clearInterval(setList)
 	}, [])
 
@@ -113,6 +125,7 @@ const Map = ({ match }) => {
 				<div className={classes.Header}>
 					<img style={{ width: '90%' }} src={tournoi} alt="" />
 				</div>
+				<span className={classes.RowButton} onClick={goToContestHandler}><p>Go to draw</p> <img src={row} alt="Goto draw" /></span>
 				<div className={classes.Table}>
 					<Table group={inView ? firstGroup : secondGroup} />
 				</div>
@@ -120,7 +133,7 @@ const Map = ({ match }) => {
 			<section className={classes.MapWrapper}>
 				<img src={map} alt="map" />
 			</section>
-			<Pointer hole={holeSelected} teams={_pointerTeams} />
+			<Pointer hole={holeSelected} teams={_pointerTeams} numberHandler={() => setHoleSelected(prev => !prev)} teamHanlder={teamHanlder} />
 			<Footer transparent />
 			<Route
 				path='/contest'

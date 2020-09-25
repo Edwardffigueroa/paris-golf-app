@@ -1,5 +1,5 @@
 .Hole {
-  margin: 50px;
+  margin: 50px 50px 50px 0px;
   display: flex;
   align-items: center;
   color: white;
@@ -30,6 +30,16 @@
 .Number:hover {
   background-color: black;
   color: white;
+}
+
+.Number.Checked {
+  background-color: black;
+  color: white;
+}
+
+.Number.Checked:hover {
+  color: black;
+  background-color: white;
 }
 
 .Teams {

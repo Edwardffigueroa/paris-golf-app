@@ -5,7 +5,7 @@ import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
 import classes from './TeamDetail.module.css'
 import Footer from '../../components/Footer/Footer';
 
-const TeamDetail = ({ name, avatar, pictures, back }) => {
+const TeamDetail = ({ name, avatar, pictures, isWinner, back }) => {
 	const images = [avatar, ...pictures]
 	return (
 		<div className={classes.TeamDetail}>
@@ -14,6 +14,9 @@ const TeamDetail = ({ name, avatar, pictures, back }) => {
 					<img style={{ width: '90%' }} src={tournoi} alt="" />
 				</div>
 				<div className={classes.CarouselWrapper}>
+					{
+						isWinner ? <h1>Champions<br />COCEF/ PLADUR<br />2020</h1> : null
+					}
 					<Carousel className={classes.Carousel} pauseOnHover={false} autoplay>
 						{
 							images.map(pic => (

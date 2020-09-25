@@ -9,49 +9,50 @@ import Hole from '../Hole/Hole';
 
 const position = (number) => {
 	switch (number) {
-		case 1: return ({ x: 2940, y: 1273 })
-		case 2: return ({ x: 3202, y: 1553 })
-		case 3: return ({ x: 3440, y: 1035 })
-		case 4: return ({ x: 3280, y: 1028 })
-		case 5: return ({ x: 3040, y: 1013 })
-		case 6: return ({ x: 3120, y: 908 })
-		case 7: return ({ x: 3558, y: 703 })
-		case 8: return ({ x: 3553, y: 1100 })
-		case 9: return ({ x: 2943, y: 1098 })
-		case 10: return ({ x: 2470, y: 608 })
-		case 11: return ({ x: 1940, y: 713 })
-		case 12: return ({ x: 1905, y: 1290 })
-		case 13: return ({ x: 2050, y: 1580 })
-		case 14: return ({ x: 2335, y: 1363 })
-		case 15: return ({ x: 2453, y: 960 })
-		case 16: return ({ x: 2188, y: 1100 })
-		case 17: return ({ x: 2000, y: 935 })
-		case 18: return ({ x: 2550, y: 793 })
-		default: return ({ x: 0, y: 0 })
+		case 1: return ({ x: 2807, y: 1147 })
+		case 2: return ({ x: 3060, y: 1433 })
+		case 3: return ({ x: 3300, y: 913 })
+		case 4: return ({ x: 3143, y: 900 })
+		case 5: return ({ x: 2913, y: 890 })
+		case 6: return ({ x: 2980, y: 793 })
+		case 7: return ({ x: 3417, y: 590 })
+		case 8: return ({ x: 3413, y: 990 })
+		case 9: return ({ x: 2793, y: 987 })
+		case 10: return ({ x: 2340, y: 487 })
+		case 11: return ({ x: 1808, y: 595 })
+		case 12: return ({ x: 1778, y: 1175 })
+		case 13: return ({ x: 1923, y: 1460 })
+		case 14: return ({ x: 2203, y: 1243 })
+		case 15: return ({ x: 2313, y: 843 })
+		case 16: return ({ x: 2058, y: 983 })
+		case 17: return ({ x: 1868, y: 820 })
+		case 18: return ({ x: 2418, y: 670 })
+		default: return ({ x: -100, y: -100 })
 	}
 }
 
 
-const Pointer = ({ hole, teams }) => {
+const Pointer = ({ hole, teams, numberHandler, teamHanlder }) => {
 
 	const { x, y } = position(hole)
 	const _height = y - 200
 
 	const props = useSpring({
-		from: { opacity: 0, height: `0px`, position: 'absolute', top: '-100px', left: `${x}px` },
+		from: { opacity: 0, height: `-100px`, position: 'absolute', top: '0px', left: `${x}px` },
 		to: { opacity: 1, height: `${_height}px`, position: 'absolute', top: '200px', left: `${x}px` },
 		reset: true
 	})
-	const clickHanlder = e => console.log('clicked')
+
 	return (
 		<a.div style={props}>
 			<div className={classes.Pointer}>
 
 				<div className={classes.PointerHole}>
 					<Hole
+						invert
 						key={hole}
-						holeClicked={clickHanlder}
-						clicked={clickHanlder}
+						holeClicked={numberHandler}
+						clicked={teamHanlder}
 						teams={teams}
 						number={hole} />
 				</div>
