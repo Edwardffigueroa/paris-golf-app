@@ -1,16 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { ReloadOutlined } from '@ant-design/icons'
 import classes from './Contest.module.css'
 import Footer from '../../components/Footer/Footer'
 import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
 import SlotGroup from '../../components/SlotGroup/SlotGroup'
 import SlotDuo from '../../components/SlotDuo/SlotDuo'
 
-const Contest = ({ teams, holes, back }) => {
-
-	const [secondTarget, setSecondTarget] = useState(0)
-
+const Contest = () => {
 
 	return (
 		<div className={classes.Contest}>
@@ -22,25 +18,6 @@ const Contest = ({ teams, holes, back }) => {
 					<SlotGroup />
 					<SlotDuo />
 				</div>
-
-				{/* <div className={classes.Controls}>
-					<div className={classes.FirstButtons}>
-						<div className={classes.Start} onClick={startHandler} >
-							<ReloadOutlined />
-							<span className={classes.Dot}></span>
-						</div>
-					</div>
-					<div className={classes.LastButtons}>
-						<div className={classes.Start} onClick={startHandler} >
-							<ReloadOutlined />
-							<span className={classes.Dot}></span>
-						</div>
-						<div className={classes.Start} onClick={startHandler} >
-							<ReloadOutlined />
-							<span className={classes.Dot}></span>
-						</div>
-					</div>
-				</div> */}
 				<Footer transparent />
 			</div>
 		</div >

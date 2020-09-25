@@ -1,13 +1,13 @@
 import React from 'react';
-import { TrophyFilled } from '@ant-design/icons'
+import crown from '../../assets/crown.svg'
 import classes from './Team.module.css'
 
 const Team = ({ avatar, name, clicked, winner }) => {
 	return (
 		<div onClick={e => clicked(name)} className={classes.Team}>
-			{winner ? <TrophyFilled className={classes.Trophy} /> : null}
-			<h3>{name}</h3>
 			<span className={classes.Avatar} style={{ backgroundImage: `url(${avatar})` }} alt={name} />
+			<h3 className={classes.Name}>{name}</h3>
+			{winner ? <div className={classes.Trophy}></div> : null}
 		</div>
 	)
 }

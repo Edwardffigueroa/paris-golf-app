@@ -1,0 +1,10 @@
+.Pointer {
+  display: flex;
+  background-color: #b30020;
+  height: 100%;
+  width: 5px;
+}
+
+.PointerHole {
+    transform: translate(-90px, -150px);
+}

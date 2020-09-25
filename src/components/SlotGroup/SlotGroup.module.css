@@ -29,6 +29,10 @@
   color: #474747;
 }
 
+.Slot:first-of-type {
+  margin-left: 0;
+}
+
 .Start {
   position: relative;
   font-size: 4rem;

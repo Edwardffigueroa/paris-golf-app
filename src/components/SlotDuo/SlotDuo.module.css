@@ -5,7 +5,6 @@
 
 .Controls {
   display: flex;
-  /* width: 100%; */
   margin-top: 143px;
   margin-left: 138px;
   flex-direction: row;
