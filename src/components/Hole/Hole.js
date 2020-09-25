@@ -11,6 +11,7 @@ const Hole = (props) => {
 			{
 				props.teams.map(team => (
 					<Team
+						key={team.name}
 						name={team.name}
 						avatar={team.avatar}
 						winner={team.isWinner}

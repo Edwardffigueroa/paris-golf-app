@@ -47,6 +47,7 @@ const Map = ({ match }) => {
 					holes.map(hole => {
 						const _myteams = teams.filter(t => t.currentHole.value === hole)
 						return <Hole
+							key={hole}
 							clicked={teamHanlder}
 							teams={_myteams}
 							number={hole} />
