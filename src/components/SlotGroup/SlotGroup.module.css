@@ -31,6 +31,7 @@
 
 .Slot:first-of-type {
   margin-left: 0;
+  width: 655px;
 }
 
 .Start {

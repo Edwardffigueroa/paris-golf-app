@@ -4,30 +4,31 @@ import React, { useState } from 'react'
 import { ReloadOutlined } from '@ant-design/icons'
 import Slot from 'react-slot-machine'
 import classes from './SlotGroup.module.css'
+import { addZero, randomNumber } from '../../utils/Utils'
 
 
-const times = 4
+const times = 5
 const duration = 2000
 const ranges = [
-	new Array(10).fill(),
-	new Array(10).fill(),
+	new Array(18).fill(),
 	new Array(3).fill()
 ]
 
-const randomNumber = (min, max) => {
-	return Math.floor(Math.random() * (max - min)) || min
-}
-
 const SlotGroup = (props) => {
 
-	const [target, setTarget] = useState([0, 1, 0])
+	const [target, setTarget] = useState([1, 0])
 
 	const startHandler = e => {
-		const _targets = [
-			randomNumber(0, 10),
-			randomNumber(1, 10),
+		let _targets = [
+			randomNumber(1, 18),
 			randomNumber(0, 2)]
-		console.log(_targets)
+
+		if (_targets[0] === target[0] || _targets[1] === target[1]) {
+			_targets = [
+				randomNumber(1, 18),
+				randomNumber(0, 2)]
+		}
+
 		setTarget(_targets)
 	}
 
@@ -42,12 +43,12 @@ const SlotGroup = (props) => {
 						duration={duration}
 						className={classes.Slot}>
 						{
-							ranges[i].map((item, index) => {
+							ranges[i].map((_, index) => {
+								const _index = i === 0 ? addZero(index) : index
 								return (<div key={index} style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-									{index}
+									{_index}
 								</div>)
-							}
-							)
+							})
 						}
 					</Slot>
 				))}

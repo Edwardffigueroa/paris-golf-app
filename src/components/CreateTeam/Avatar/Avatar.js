@@ -28,24 +28,27 @@ const Avatar = (props) => {
 	}, [props.saved])
 
 	return (
-		<Upload
-			name="avatar"
-			listType="picture-card"
-			className={classes.AvatarUploader}
-			showUploadList={false}
-			beforeUpload={beforeUpload}
-			onChange={handleChange}>
-			{
-				avatar
-					? <img src={avatar} alt="avatar" style={{ width: '100%' }} />
-					: (
-						<div>
-							{loading ? <LoadingOutlined /> : <PlusOutlined />}
-							<div style={{ marginTop: 8 }}>Upload</div>
-						</div>
-					)
-			}
-		</Upload>
+		<div>
+			<p style={{ fontWeight: '700' }}>Avatar:</p>
+			<Upload
+				name="avatar"
+				listType="picture-card"
+				className={classes.AvatarUploader}
+				showUploadList={false}
+				beforeUpload={beforeUpload}
+				onChange={handleChange}>
+				{
+					avatar
+						? <img src={avatar} alt="avatar" style={{ width: '100%' }} />
+						: (
+							<div>
+								{loading ? <LoadingOutlined /> : <PlusOutlined />}
+								<div style={{ marginTop: 8 }}>Upload</div>
+							</div>
+						)
+				}
+			</Upload>
+		</div>
 	)
 }
 

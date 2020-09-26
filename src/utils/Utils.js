@@ -27,8 +27,23 @@ export const beforeUploadList = file => {
 
     const isLt2M = file.size / 1024 / 1024 < 2
     if (!isLt2M) {
-        message.error('Image must be smaller than 2Mb')
+        // message.error('Image must be smaller than 2Mb')
     }
 
     return false
+}
+
+
+export const randomNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) || min
+}
+
+export const addZero = number => {
+    let _number
+    if (number < 10) {
+        _number = '0'
+    } else {
+        _number = ''
+    }
+    return _number + number
 }

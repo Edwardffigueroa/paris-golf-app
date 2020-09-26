@@ -42,6 +42,7 @@ const Images = (props) => {
 
 	return (
 		<>
+			<p style={{ fontWeight: '700' }}>Images:</p>
 			<Upload
 				multiple
 				listType="picture-card"

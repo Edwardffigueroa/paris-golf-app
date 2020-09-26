@@ -83,6 +83,7 @@ const Map = ({ match }) => {
 	const firstGroup = holes.map((hole) => {
 		const _myteams = teams.filter(t => t.currentHole.value === hole)
 		return <Hole
+			selected={holeSelected}
 			key={hole}
 			holeClicked={holeHandler}
 			clicked={teamHanlder}
@@ -94,6 +95,7 @@ const Map = ({ match }) => {
 	const secondGroup = holes.map((hole) => {
 		const _myteams = teams.filter(t => t.currentHole.value === hole)
 		return <Hole
+			selected={holeSelected}
 			key={hole}
 			holeClicked={holeHandler}
 			clicked={teamHanlder}
