@@ -6,7 +6,7 @@ import Slot from 'react-slot-machine'
 import classes from './SlotGroup.module.css'
 
 
-const times = 2
+const times = 4
 const duration = 2000
 const ranges = [
 	new Array(10).fill(),

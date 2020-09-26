@@ -6,7 +6,7 @@ import Slot from 'react-slot-machine'
 import classes from './SlotDuo.module.css'
 
 
-const times = 2
+const times = 4
 const randomNumber = (min, max) => {
 	return Math.floor(Math.random() * (max - min) + min)
 }

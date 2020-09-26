@@ -51,10 +51,31 @@
   display: flex;
 }
 
-
 .Animated {
   background-color: white;
   --animation: beat 0.5s infinite alternate;
+}
+
+.RowButton {
+  position: absolute;
+  top: 560px;
+  left: 215px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 9999;
+}
+
+.RowButton p {
+  font-size: 48px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  margin: 0 15px;
+  color: #616161;
+}
+
+.RowButton img {
+  transform: rotate(180deg);
 }
 
 @keyframes slide-in-fwd-center {
