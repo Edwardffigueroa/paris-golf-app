@@ -104,23 +104,10 @@ const Map = ({ match }) => {
 			number={hole} />
 	}).filter((_, i) => i !== 0 && i >= 10)
 
-	useEffect(() => {
-		const setList = () => setInView(prev => !prev)
-		setInterval(() => setList(), 12000)
-
-		// window.addEventListener('click', ({ clientX, clientY }) => {
-		// 	console.log(clientX, clientY)
-		// })
-
-		return () => clearInterval(setList)
-	}, [])
-
-
 	const _pointerTeams = teams.filter(t => {
 		if (!holeSelected) return null
 		return t.currentHole.value === holeSelected
 	})
-
 
 	return (
 		<div className={classes.Map}>
