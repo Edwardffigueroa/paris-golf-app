@@ -8,7 +8,8 @@ import tournoi from '../../assets/LOGO TOURNOI DE GOLF.svg'
 import map from '../../assets/map.svg'
 import row from '../../assets/row.svg'
 
-import Hole from '../../components/Hole/Hole'
+// import Hole from '../../components/Hole/Hole'
+import Table from '../../components/Table/Table'
 import Footer from '../../components/Footer/Footer'
 import Pointer from '../../components/Pointer/Pointer'
 import NavigationRows from '../../components/NavigationRows/NavigationRows'
@@ -16,29 +17,8 @@ import NavigationRows from '../../components/NavigationRows/NavigationRows'
 import TeamDetail from '../TeamDetail/TeamDetail'
 import Contest from '../Contest/Contest';
 
-import { useSprings, animated as a } from 'react-spring'
 import classes from './Map.module.css'
 
-
-const Table = ({ group }) => {
-
-	const from = { transform: 'translate3d(300px,0,0)', opacity: 0 }
-	const to = { transform: 'translate3d(0px,0,0)', opacity: 1 }
-	const base = {
-		config: { mass: 5, tension: 2000, friction: 200 },
-		from: from,
-		to: to,
-		reset: true
-	}
-
-	const springs = useSprings(group.length, group.map((t, i) => ({ ...base, delay: 100 * i })))
-
-	return springs.map((s, i) => (
-		<a.span key={`char${i}`} style={s}>
-			{ group[i]}
-		</a.span>
-	))
-}
 
 
 const Map = ({ match }) => {
@@ -58,11 +38,19 @@ const Map = ({ match }) => {
 	}
 
 	const holeHandler = hole => {
-		const _isSame = hole === holeSelected
-		_isSame
-			? setHoleSelected(null)
-			: setHoleSelected(hole)
+		const _isSame = hole == holeSelected
+
+		if (_isSame) {
+			setHoleSelected(null)
+		}
+
+		if (!_isSame || (_isSame && !holeSelected)) {
+			setHoleSelected(hole)
+		}
+
+
 	}
+
 	const backToMap = e => history.push('/')
 
 	useEffect(() => {
@@ -80,30 +68,6 @@ const Map = ({ match }) => {
 				})
 	}, [])
 
-
-	const firstGroup = holes.map((hole) => {
-		const _myteams = teams.filter(t => t.currentHole.value === hole)
-		return <Hole
-			selected={holeSelected}
-			key={hole}
-			holeClicked={holeHandler}
-			clicked={teamHanlder}
-			teams={_myteams}
-			number={hole} />
-	}).filter((_, i) => i !== 0 && i < 10)
-
-
-	const secondGroup = holes.map((hole) => {
-		const _myteams = teams.filter(t => t.currentHole.value === hole)
-		return <Hole
-			selected={holeSelected}
-			key={hole}
-			holeClicked={holeHandler}
-			clicked={teamHanlder}
-			teams={_myteams}
-			number={hole} />
-	}).filter((_, i) => i !== 0 && i >= 10)
-
 	const _pointerTeams = teams.filter(t => {
 		if (!holeSelected) return null
 		return t.currentHole.value === holeSelected
@@ -116,8 +80,16 @@ const Map = ({ match }) => {
 					<img style={{ width: '90%' }} src={tournoi} alt="" />
 				</div>
 				<span className={classes.RowButton} onClick={goToContestHandler}><p>Go to draw</p> <img src={row} alt="Goto draw" /></span>
-				<div className={classes.Table}>
-					<Table group={inView ? firstGroup : secondGroup} />
+				<div className={inView ? [classes.Table, classes.Group].join(' ') : [classes.Table, classes.Group].join(' ')}>
+					{
+						<Table
+							second={inView}
+							holes={holes}
+							teams={teams}
+							holeSelected={holeSelected}
+							holeHandler={holeHandler}
+							teamHanlder={teamHanlder} />
+					}
 				</div>
 				<NavigationRows onChange={() => setInView(prev => !prev)} />
 			</section>

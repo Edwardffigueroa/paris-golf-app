@@ -4,9 +4,9 @@ import classes from './NavigationRows.module.css'
 
 const NavigationRows = ({ onChange }) => {
 	return (
-		<div className={classes.NavigationRows}>
-			<LeftOutlined onClick={onChange} />
-			<RightOutlined onClick={onChange} />
+		<div onClick={onChange} className={classes.NavigationRows}>
+			<LeftOutlined />
+			<RightOutlined />
 		</div>
 	)
 }

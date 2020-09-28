@@ -5,9 +5,7 @@ import classes from './Hole.module.css'
 const Hole = (props) => {
 	const [isChecked, setIsChecked] = useState(false)
 	const clicked = e => {
-		if (!isChecked) {
-			props.holeClicked(props.number)
-		}
+		props.holeClicked(props.number)
 		setIsChecked(prev => !prev)
 	}
 	return (

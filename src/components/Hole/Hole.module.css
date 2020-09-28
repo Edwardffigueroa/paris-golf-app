@@ -27,19 +27,9 @@
   transition: all ease-in-out 300ms;
 }
 
-.Number:hover {
-  background-color: black;
-  color: white;
-}
-
 .Number.Checked {
   background-color: black;
   color: white;
-}
-
-.Number.Checked:hover {
-  color: black;
-  background-color: white;
 }
 
 .Teams {
