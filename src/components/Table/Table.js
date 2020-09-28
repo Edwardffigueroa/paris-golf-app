@@ -8,9 +8,11 @@ const Table = ({ holes, teams, holeSelected, teamHanlder, holeHandler, second })
 
 
 	const props = useSpring({
-		to: [{ opacity: 1, color: '#ffaaee' }, { opacity: 0, color: 'rgb(14,26,19)' }],
-		from: { opacity: 0, color: 'red' }
+		to: second ? { opacity: 1, color: '#ffaaee' } : { opacity: 0, color: '#ffaaee' },
+		from: { opacity: 0, color: '#ffaaee' }
 	})
+
+	// const propertas
 	// ...
 
 
