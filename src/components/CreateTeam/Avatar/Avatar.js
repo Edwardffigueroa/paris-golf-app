@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Upload } from 'antd'
 import { getBase64, beforeUpload } from '../../../utils/Utils'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-
+import { message } from 'antd'
 import classes from './Avatar.module.css'
 
 const Avatar = (props) => {
@@ -13,14 +13,22 @@ const Avatar = (props) => {
 		setLoading(true)
 		if (info.file.originFileObj) {
 			getBase64(info.file.originFileObj, imgUrl => {
-				setAvatar(imgUrl)
-				props.sendAvatar(info.file.originFileObj)
-				setLoading(false)
+				props.sendAvatar(info.file.originFileObj, (percentage) => {
+					if (percentage === 100) {
+						message.success({
+							content: 'Avatar uploaded!',
+							className: classes.Success,
+							style: {
+								marginTop: '50vh',
+							}
+						})
+						setAvatar(imgUrl)
+						setLoading(false)
+					}
+				})
 			})
 		}
 	}
-
-
 
 	useEffect(() => {
 		setLoading(false)

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Upload, Modal } from 'antd'
 import { beforeUploadList, getBase64 } from '../../../utils/Utils'
-
+import { message } from 'antd'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import classes from './Images.module.css'
 
@@ -21,8 +21,20 @@ const Images = (props) => {
 	}, [props.saved])
 
 	const handleChange = ({ file, fileList }) => {
-		props.sendImage(file, fileList)
-		setFileList(fileList)
+		setLoading(true)
+		props.sendImage(file, fileList, percentage => {
+			if (percentage === 100) {
+				message.success({
+					content: 'Images uploaded!',
+					className: classes.Success,
+					style: {
+						marginTop: '50vh',
+					}
+				})
+				setLoading(false)
+				setFileList(fileList)
+			}
+		})
 	}
 
 	const handleCancel = () => setPreviewVisible(false)

@@ -4,13 +4,14 @@ import { useHistory, Route } from 'react-router-dom'
 
 import { Database } from '../../firebaseConfig'
 
-import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
+import tournoi from '../../assets/LOGO TOURNOI DE GOLF.svg'
 import map from '../../assets/map.svg'
 import row from '../../assets/row.svg'
 
 import Hole from '../../components/Hole/Hole'
 import Footer from '../../components/Footer/Footer'
 import Pointer from '../../components/Pointer/Pointer'
+import NavigationRows from '../../components/NavigationRows/NavigationRows'
 
 import TeamDetail from '../TeamDetail/TeamDetail'
 import Contest from '../Contest/Contest';
@@ -131,12 +132,13 @@ const Map = ({ match }) => {
 				<div className={classes.Table}>
 					<Table group={inView ? firstGroup : secondGroup} />
 				</div>
+				<NavigationRows onChange={() => setInView(prev => !prev)} />
 			</section>
 			<section className={classes.MapWrapper}>
 				<img src={map} alt="map" />
 			</section>
 			<Pointer hole={holeSelected} teams={_pointerTeams} numberHandler={() => setHoleSelected(prev => !prev)} teamHanlder={teamHanlder} />
-			<Footer transparent />
+			<Footer transparent notPresented />
 			<Route
 				path='/contest'
 				render={() => (

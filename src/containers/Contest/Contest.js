@@ -2,7 +2,7 @@ import React from 'react'
 import row from '../../assets/row.svg'
 import classes from './Contest.module.css'
 import Footer from '../../components/Footer/Footer'
-import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
+import tournoi from '../../assets/LOGO TOURNOI DE GOLF.svg'
 import SlotGroup from '../../components/SlotGroup/SlotGroup'
 import SlotDuo from '../../components/SlotDuo/SlotDuo'
 

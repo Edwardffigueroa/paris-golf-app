@@ -9,11 +9,11 @@ import rtw from '../../assets/logo_rtw.svg'
 
 import classes from './Footer.module.css'
 
-const Footer = ({ transparent }) => {
+const Footer = ({ transparent, notPresented }) => {
 	return (
 		<div style={transparent ? { backgroundColor: 'transparent' } : null} className={classes.Footer}>
 			{
-				transparent ?
+				transparent && !notPresented ?
 					<div className={classes.Presente}>
 						<p>Presenté par</p>
 					</div> : null

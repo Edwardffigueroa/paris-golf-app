@@ -35,7 +35,7 @@ export const beforeUploadList = file => {
 
 
 export const randomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min)) || min
+    return Math.floor(Math.random() * (max - min) + min)
 }
 
 export const addZero = number => {

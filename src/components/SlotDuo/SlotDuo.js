@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 
-
+import { randomNumber } from '../../utils/Utils'
 import { ReloadOutlined } from '@ant-design/icons'
 import Slot from 'react-slot-machine'
 import classes from './SlotDuo.module.css'
 
 
-const times = 4
-const randomNumber = (min, max) => {
-	return Math.floor(Math.random() * (max - min) + min)
-}
+const times = 5
+const duration = 2000
 
 const SlotGroup = () => {
 
@@ -18,7 +16,7 @@ const SlotGroup = () => {
 
 	const startHandler = id => {
 		const _newTarget = randomNumber(1, 3)
-		id == "1"
+		id === "1"
 			? setTarget(_newTarget)
 			: setSecondTarget(_newTarget)
 	}
@@ -29,7 +27,7 @@ const SlotGroup = () => {
 				<Slot
 					times={times}
 					target={target}
-					duration={2000}
+					duration={duration}
 					className={classes.Slot}>
 					{
 						[0, 1, 2, 3].map((item, index) => {
@@ -42,7 +40,7 @@ const SlotGroup = () => {
 				<Slot
 					times={times}
 					target={secondTarget}
-					duration={3000}
+					duration={duration + 1000}
 					className={classes.Slot}>
 					{
 						[0, 1, 2, 3].map((item, index) => {

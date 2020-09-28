@@ -13,7 +13,7 @@ const Hole = (props) => {
 	return (
 		<div className={classes.Hole}>
 			<span
-				className={props.number == props.selected ? [classes.Number, classes.Checked].join(' ') : classes.Number}
+				className={props.number === props.selected ? [classes.Number, classes.Checked].join(' ') : classes.Number}
 				onClick={clicked} >
 				{props.number}
 			</span>

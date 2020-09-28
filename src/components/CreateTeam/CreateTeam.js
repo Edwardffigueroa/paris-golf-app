@@ -36,7 +36,7 @@ const CreateTeam = (props) => {
 			isWinner: false
 		}
 
-		if (!_team.avatar.length > 0 || !_team.images.length > 0) {
+		if (!avatarUrl || !_team.images.length > 0) {
 			message.error({
 				content: 'Team not saved, images still uploading',
 				className: classes.Error,
@@ -49,7 +49,7 @@ const CreateTeam = (props) => {
 				.push(_team)
 				.then(snapshot => {
 
-					const _teamAdded = snapshot.toJSON()
+					// const _teamAdded = snapshot.toJSON()
 					setSaved(true)
 
 					setName('')
@@ -61,35 +61,28 @@ const CreateTeam = (props) => {
 		}
 	}
 
-	const saveAvatarToFirebase = async imageFile => {
-		const snapshot = await storageRef.child(`avatar_${name}_team`).put(imageFile)
-		const _url = await snapshot.ref.getDownloadURL()
-		message.success({
-			content: 'Avatar uploaded!',
-			className: classes.Success,
-			style: {
-				marginTop: '50vh',
-			}
-		})
-		setAvatarUrl(_url)
+	const saveAvatarToFirebase = (imageFile, feedback) => {
+		let _url
+		storageRef.child(`avatar_${name}_team`).put(imageFile)
+			.on('state_changed', async task => {
+				let progress = (task.bytesTransferred / task.totalBytes) * 100;
+				_url = await task.ref.getDownloadURL()
+				feedback(progress)
+				setAvatarUrl(_url)
+			})
 		return false || _url
 	}
 
 
-	const saveImageToFirebase = async (image, fileList) => {
-		const snapshot = await storageRef.child(`images_${name}_team_${image.uid}`).put(image)
-		const _url = await snapshot.ref.getDownloadURL()
-		setImages(prev => [...prev, _url])
-
-		if (image.uid === fileList[fileList.length - 1].uid) {
-			message.success({
-				content: 'Images uploaded!',
-				className: classes.Success,
-				style: {
-					marginTop: '50vh',
-				}
+	const saveImageToFirebase = async (image, fileList, feedback) => {
+		let _url
+		storageRef.child(`images_${name}_team_${image.uid}`).put(image)
+			.on('state_changed', async task => {
+				let progress = (task.bytesTransferred / task.totalBytes) * 100;
+				_url = await task.ref.getDownloadURL()
+				feedback(progress)
+				setImages(prev => [...prev, _url])
 			})
-		}
 	}
 
 	const saveWinnerToFirebase = team => {

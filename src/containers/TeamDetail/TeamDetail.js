@@ -4,7 +4,7 @@ import pause from '../../assets/pause.svg'
 import play from '../../assets/play.svg'
 import rowBack from '../../assets/row_back.svg'
 import { Carousel } from 'antd'
-import tournoi from '../../assets/LOGO\ TOURNOI\ DE\ GOLF.svg'
+import tournoi from '../../assets/LOGO TOURNOI DE GOLF.svg'
 import classes from './TeamDetail.module.css'
 import Footer from '../../components/Footer/Footer';
 

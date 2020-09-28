@@ -1,5 +1,4 @@
 import React from 'react';
-import crown from '../../assets/crown.svg'
 import classes from './Team.module.css'
 
 const Team = ({ avatar, name, clicked, winner }) => {
