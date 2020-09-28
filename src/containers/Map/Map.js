@@ -91,7 +91,7 @@ const Map = ({ match }) => {
 							teamHanlder={teamHanlder} />
 					}
 				</div>
-				<NavigationRows onChange={() => setInView(prev => !prev)} />
+				{/* <NavigationRows onChange={() => setInView(prev => !prev)} /> */}
 			</section>
 			<section className={classes.MapWrapper}>
 				<img src={map} alt="map" />

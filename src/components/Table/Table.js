@@ -8,12 +8,9 @@ const Table = ({ holes, teams, holeSelected, teamHanlder, holeHandler, second })
 
 
 	const props = useSpring({
-		to: second ? { opacity: 1, color: '#ffaaee' } : { opacity: 0, color: '#ffaaee' },
-		from: { opacity: 0, color: '#ffaaee' }
+		to: { opacity: 1 },
+		from: { opacity: 0 }
 	})
-
-	// const propertas
-	// ...
 
 
 	let _myHoles = holes.map((hole) => {
@@ -36,10 +33,11 @@ const Table = ({ holes, teams, holeSelected, teamHanlder, holeHandler, second })
 				{
 					_myHoles ?
 						_myHoles.filter((_, i) => {
-							if (second) {
-								return i !== 0 && i >= 10
+							if (_.props.teams.length > 0) {
+								console.log()
+								return i
 							}
-							return i !== 0 && i < 10
+
 						}).map((s, i) => (
 							<div key={`char${i}`} className={classes.Group}>
 								{s}
